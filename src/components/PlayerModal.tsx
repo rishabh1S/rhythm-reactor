@@ -31,6 +31,8 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
     positionMillis,
     playableDurationMillis,
     onPlayPause,
+    onLike,
+    isLiked,
     countWords,
   } = usePlayerContext();
   const gradientColors = [
@@ -92,19 +94,13 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
   };
 
   const handleShare = () => {
-    if (track && track.preview_url) {
+    if (track && track.external_urls.spotify) {
       Share.share({
-        message: `Check out this track: ${track.name} by ${track.artists[0]?.name}`,
-        url: track.preview_url,
-        title: "Share Track",
+        message: `Check out this track: ${track.name} by ${track.artists[0]?.name}\n${track.external_urls.spotify}`,
       })
         .then((result) => {
           if (result.action === Share.sharedAction) {
-            if (result.activityType) {
-              console.log(`Shared via ${result.activityType}`);
-            } else {
-              console.log("Shared");
-            }
+            console.log("Shared");
           } else if (result.action === Share.dismissedAction) {
             console.log("Dismissed");
           }
@@ -174,7 +170,12 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
                   )}
                   <Text style={styles.subtitle}>{track.artists[0]?.name}</Text>
                 </View>
-                <AntDesign name="heart" size={24} color="#1DB954" />
+                <Ionicons
+                  onPress={onLike}
+                  name={isLiked ? "heart" : "heart-outline"}
+                  size={24}
+                  color={isLiked ? "#1DB954" : "white"}
+                />
               </View>
 
               <View style={{ marginTop: 10 }}>

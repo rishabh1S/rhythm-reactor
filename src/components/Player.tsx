@@ -16,6 +16,8 @@ const Player = ({ onPress }: PlayerProps) => {
     playableDurationMillis,
     playTrack,
     onPlayPause,
+    onLike,
+    isLiked,
     countWords,
   } = usePlayerContext();
 
@@ -48,9 +50,10 @@ const Player = ({ onPress }: PlayerProps) => {
         </View>
 
         <Ionicons
-          name={"heart-outline"}
+          onPress={onLike}
+          name={isLiked ? "heart" : "heart-outline"}
           size={20}
-          color={"white"}
+          color={isLiked ? "#1DB954" : "white"}
           style={{ marginHorizontal: 10 }}
         />
         <Ionicons

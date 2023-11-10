@@ -8,6 +8,12 @@ import {
 import { Track } from "../../../Cloudburst/src/types";
 import { AVPlaybackStatus, Audio } from "expo-av";
 import { Sound } from "expo-av/build/Audio";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  insertFavoriteMutation,
+  isFavoriteQuery,
+  removeFavoriteMutation,
+} from "../favorite";
 
 type PlayerContextType = {
   track?: Track;
@@ -18,6 +24,8 @@ type PlayerContextType = {
   playableDurationMillis: number;
   playTrack: (track: Track) => void;
   onPlayPause: () => void;
+  onLike: () => void;
+  isLiked: boolean;
   countWords: (str: string) => number;
 };
 
@@ -28,6 +36,8 @@ const PlayerContext = createContext<PlayerContextType>({
   playableDurationMillis: 0,
   playTrack: () => {},
   onPlayPause: () => {},
+  onLike: () => {},
+  isLiked: false,
   countWords: (str) => 0,
 });
 
@@ -37,6 +47,13 @@ export default function PlayerProvider({ children }: PropsWithChildren) {
   const [sound, setSound] = useState<Sound | undefined>();
   const [positionMillis, setPositionMillis] = useState(0);
   const [playableDurationMillis, setPlayableDurationMillis] = useState(0);
+  const [insertFavorite] = useMutation(insertFavoriteMutation);
+  const [removeFavorite] = useMutation(removeFavoriteMutation);
+
+  const { data, refetch } = useQuery(isFavoriteQuery, {
+    variables: { userId: "rishabh", trackId: track?.id || "" },
+  });
+  const isLiked = data?.favoritesByTrackidAndUserid?.length > 0;
 
   useEffect(() => {
     if (sound) {
@@ -88,6 +105,20 @@ export default function PlayerProvider({ children }: PropsWithChildren) {
     setIsPlaying(status.isPlaying);
   };
 
+  const onLike = async () => {
+    if (!track) return;
+    if (isLiked) {
+      await removeFavorite({
+        variables: { userId: "rishabh", trackId: track.id },
+      });
+    } else {
+      await insertFavorite({
+        variables: { userId: "rishabh", trackId: track.id },
+      });
+    }
+    refetch();
+  };
+
   function countWords(str: string) {
     return str.split(" ").filter((word: string) => word).length;
   }
@@ -103,6 +134,8 @@ export default function PlayerProvider({ children }: PropsWithChildren) {
         playableDurationMillis,
         playTrack,
         onPlayPause,
+        onLike,
+        isLiked,
         countWords,
       }}
     >

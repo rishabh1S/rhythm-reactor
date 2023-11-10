@@ -15,7 +15,9 @@ const query = gql`
         id
         name
         preview_url
-        uri
+        external_urls {
+          spotify
+        }
         artists {
           id
           name

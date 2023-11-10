@@ -2,8 +2,12 @@ export type Track = {
   id: string;
   name: string;
   preview_url?: string | null;
+  external_urls: Spotify;
   album: Album;
   artists: Artist[];
+};
+export type Spotify = {
+  spotify: string;
 };
 export type Album = {
   id: string;
