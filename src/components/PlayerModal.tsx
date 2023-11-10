@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
   Modal,
   Pressable,
@@ -33,8 +33,27 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
     onPlayPause,
     countWords,
   } = usePlayerContext();
-
+  const gradientColors = [
+    "#ff7f50",
+    "#3498db",
+    "#2ecc71",
+    "#e74c3c",
+    "#f39c12",
+    "#9b59b6",
+    "#1abc9c",
+    "#e67e22",
+    "#95a5a6",
+    "#d35400",
+  ];
+  const [currentColor, setCurrentColor] = useState<string>(gradientColors[0]);
   const circleSize = 8;
+  useEffect(() => {
+    if (track) {
+      const newColor =
+        gradientColors[Math.floor(Math.random() * gradientColors.length)];
+      setCurrentColor(newColor);
+    }
+  }, [track]);
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60000);
     const seconds = Math.floor((time % 60000) / 1000);
@@ -113,7 +132,10 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
         presentationStyle="overFullScreen"
         onRequestClose={() => setModalVisible(false)}
       >
-        <LinearGradient colors={["#ff7f50", "#000"]} style={styles.container}>
+        <LinearGradient
+          colors={[currentColor, "#000"]}
+          style={styles.container}
+        >
           <View style={styles.header}>
             <Pressable
               style={{
@@ -239,6 +261,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   headerText: {
+    flex: 1,
+    textAlign: "center",
     fontSize: 14,
     fontWeight: "bold",
     color: "white",
