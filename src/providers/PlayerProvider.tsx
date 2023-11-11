@@ -5,7 +5,7 @@ import {
   useContext,
   useEffect,
 } from "react";
-import { Track } from "../types";
+import { Track } from "../../assets/data/types";
 import { AVPlaybackStatus, Audio } from "expo-av";
 import { Sound } from "expo-av/build/Audio";
 import { useMutation, useQuery } from "@apollo/client";
@@ -13,7 +13,7 @@ import {
   insertFavoriteMutation,
   isFavoriteQuery,
   removeFavoriteMutation,
-} from "../favorite";
+} from "../../assets/data/favorite";
 
 type PlayerContextType = {
   track?: Track;

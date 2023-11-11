@@ -4,6 +4,7 @@ import {
   View,
   Text,
   StyleSheet,
+  Button,
 } from "react-native";
 import TrackListItem from "../../components/TrackListItem";
 import { gql, useQuery } from "@apollo/client";
@@ -41,16 +42,10 @@ const query = gql`
 `;
 
 export default function FavoritesScreen() {
-  const { data, loading, error, refetch } = useQuery(query, {
+  const { data, loading, error } = useQuery(query, {
     variables: { userId: "rishabh" },
   });
 
-  if (loading) {
-    return <ActivityIndicator style={{ flex: 1 }} />;
-  }
-  if (error) {
-    console.log(error);
-  }
   const tracks = (data?.favoritesByUserid || []).map(
     (fav: { track: any }) => fav.track
   );
@@ -62,8 +57,11 @@ export default function FavoritesScreen() {
           <Text style={styles.headerText}>Liked Songs</Text>
         </View>
       </LinearGradient>
+      {loading && <ActivityIndicator style={{ flex: 1 }} />}
+      {error && <Text>Failed to fetch tracks</Text>}
       <FlatList
         data={tracks}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <TrackListItem track={item} />}
         showsVerticalScrollIndicator={false}
       />

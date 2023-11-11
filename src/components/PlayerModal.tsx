@@ -65,36 +65,9 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
-  const playNextTrack = async () => {
-    // if (currentSound) {
-    //   await currentSound.stopAsync();
-    //   setCurrentSound(null);
-    // }
-    // value.current += 1;
-    // if (value.current < savedTracks.length) {
-    //   const nextTrack = savedTracks[value.current];
-    //   setCurrentTrack(nextTrack);
-    //   extractColors();
-    //   await play(nextTrack);
-    // } else {
-    //   console.log("end of playlist");
-    // }
-  };
+  const playNextTrack = async () => {};
 
-  const playPreviousTrack = async () => {
-    // if (currentSound) {
-    //   await currentSound.stopAsync();
-    //   setCurrentSound(null);
-    // }
-    // value.current -= 1;
-    // if (value.current < savedTracks.length) {
-    //   const nextTrack = savedTracks[value.current];
-    //   setCurrentTrack(nextTrack);
-    //   await play(nextTrack);
-    // } else {
-    //   console.log("end of playlist");
-    // }
-  };
+  const playPreviousTrack = async () => {};
 
   const handleShare = () => {
     if (track && track.external_urls.spotify) {
