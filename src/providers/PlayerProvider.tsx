@@ -5,7 +5,7 @@ import {
   useContext,
   useEffect,
 } from "react";
-import { Track } from "../../../Cloudburst/src/types";
+import { Track } from "../types";
 import { AVPlaybackStatus, Audio } from "expo-av";
 import { Sound } from "expo-av/build/Audio";
 import { useMutation, useQuery } from "@apollo/client";

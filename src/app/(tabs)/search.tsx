@@ -10,6 +10,7 @@ import TrackListItem from "../../components/TrackListItem";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
+import { LinearGradient } from "expo-linear-gradient";
 
 const query = gql`
   query MyQuery($q: String!) {
@@ -52,6 +53,11 @@ export default function SearchScreen() {
 
   return (
     <View>
+      <LinearGradient colors={["#006450", "#000"]} style={{ height: 150 }}>
+        <View style={styles.container}>
+          <Text style={styles.headerText}>Search</Text>
+        </View>
+      </LinearGradient>
       <View style={styles.header}>
         <View style={styles.searchContainer}>
           <FontAwesome
@@ -89,6 +95,17 @@ export default function SearchScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  headerText: {
+    color: "white",
+    fontFamily: "Inter-Black",
+    letterSpacing: 0.8,
+    fontSize: 24,
+  },
   header: {
     flexDirection: "row",
     alignItems: "center",

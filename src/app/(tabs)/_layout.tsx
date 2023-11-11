@@ -64,8 +64,8 @@ export default function TabLayout() {
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
-                    name="info-circle"
-                    size={25}
+                    name="user-circle-o"
+                    size={28}
                     color={Colors[colorScheme ?? "dark"].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
@@ -79,7 +79,7 @@ export default function TabLayout() {
         name="search"
         options={{
           title: "Search",
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         }}
       />
@@ -87,6 +87,7 @@ export default function TabLayout() {
         name="favorites"
         options={{
           title: "Favorites",
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="heart" color={color} />,
         }}
       />

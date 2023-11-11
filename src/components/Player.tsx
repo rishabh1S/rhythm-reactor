@@ -48,7 +48,6 @@ const Player = ({ onPress }: PlayerProps) => {
           )}
           <Text style={styles.subtitle}>{track.artists[0]?.name}</Text>
         </View>
-
         <Ionicons
           onPress={onLike}
           name={isLiked ? "heart" : "heart-outline"}

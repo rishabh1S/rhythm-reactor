@@ -12,8 +12,8 @@ import MarqueeView from "react-native-marquee-view";
 import {
   AntDesign,
   Entypo,
-  Feather,
   Ionicons,
+  MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
 import { usePlayerContext } from "../providers/PlayerProvider";
@@ -30,6 +30,7 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
     isPlaying,
     positionMillis,
     playableDurationMillis,
+    playTrack,
     onPlayPause,
     onLike,
     isLiked,
@@ -48,6 +49,8 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
     "#d35400",
   ];
   const [currentColor, setCurrentColor] = useState<string>(gradientColors[0]);
+  const [isRepeatEnabled, setIsRepeatEnabled] = useState(false);
+  const [isSuffleEnabled, setIsSuffleEnabled] = useState(false);
   const circleSize = 8;
   useEffect(() => {
     if (track) {
@@ -209,8 +212,14 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
                 </View>
               </View>
               <View style={styles.controls}>
-                <Pressable>
-                  <Entypo name="shuffle" size={24} color="white" />
+                <Pressable onPress={() => setIsSuffleEnabled(!isSuffleEnabled)}>
+                  <MaterialCommunityIcons
+                    name={
+                      isSuffleEnabled ? "shuffle-variant" : "shuffle-disabled"
+                    }
+                    size={28}
+                    color={isSuffleEnabled ? "#1DB954" : "white"}
+                  />
                 </Pressable>
                 <Pressable onPress={playPreviousTrack}>
                   <Ionicons name="play-skip-back" size={30} color="white" />
@@ -231,8 +240,12 @@ const PlayerModal = ({ isModalVisible, setModalVisible }: PlayerModelProps) => {
                 <Pressable onPress={playNextTrack}>
                   <Ionicons name="play-skip-forward" size={30} color="white" />
                 </Pressable>
-                <Pressable>
-                  <Feather name="repeat" size={24} color="white" />
+                <Pressable onPress={() => setIsRepeatEnabled(!isRepeatEnabled)}>
+                  <MaterialIcons
+                    name={isRepeatEnabled ? "repeat-one" : "repeat"}
+                    size={28}
+                    color={isRepeatEnabled ? "#1DB954" : "white"}
+                  />
                 </Pressable>
               </View>
               <View style={styles.bottomControls}>
