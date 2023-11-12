@@ -3,6 +3,10 @@
     "preview": {
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://harar.stepzen.net/api/iced-elk/__graphql",
+        "EXPO_PUBLIC_API_KEY": "harar::stepzen.net+1000::f0d347764f10f670fc5061e6451123a6e36ea2e943e1295ffc20c26aa7dced41"
       }
     },
     "preview2": {
