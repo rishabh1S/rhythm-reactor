@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Pressable,
   StyleSheet,
+  StatusBar,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
@@ -32,6 +33,9 @@ const GenreModal = ({
       onBackButtonPress={onClose}
       animationIn="slideInRight"
       animationOut="slideOutRight"
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      useNativeDriver
       style={styles.modal}
     >
       <View style={styles.modalContainer}>
@@ -40,6 +44,8 @@ const GenreModal = ({
           style={{
             flexDirection: "row",
             alignItems: "center",
+            paddingTop: 20,
+            paddingLeft: 10,
             height: 100,
           }}
         >
@@ -78,7 +84,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: "#000",
     flex: 1,
-    marginLeft: 200,
+    marginLeft: 170,
   },
   modalTitle: {
     fontSize: 20,
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
   genreItem: {
     fontSize: 18,
     marginBottom: 10,
-    color: "#fff",
+    color: "#fffa",
   },
   selectedGenre: {
     fontSize: 22,
