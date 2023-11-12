@@ -1,4 +1,4 @@
-# NFT Marketplace - Showcase
+# Spotify Clone - Rhythm
 
 ![Spotify Clone](https://res.cloudinary.com/dnp36kqdc/image/upload/v1699817776/CDN%20for%20portfolio/Spotify-Clone_zawzvq.png)
 
