@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   subtitle: {
-    color: "lightgray",
+    color: "gray",
   },
   progressBar: {
     width: "100%",
