@@ -42,4 +42,4 @@ Ready to embark on your musical journey with [Your App Name]? Follow these simpl
 
 2. **Explore and Enjoy:** Navigate through recommended songs, explore genres, and build your liked collection. Your music adventure begins now!
 
-![Download Now](https://expo.dev/@rishabh1s/rhythm-reactor)
+[Download Now](https://expo.dev/@rishabh1s/rhythm-reactor)
